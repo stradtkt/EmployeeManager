@@ -22,13 +22,13 @@ namespace EmployeeManager.Models
     }
     public enum ManagerRanking
     {
-        CEO, //chief executive officer
-        SVP, //senior vice president
-        RD, //Regional Director
-        DD, //District Director
-        PM, //Plant Manager
-        OM, //Operations Manager
-        SM, //Sales Manager
-        DM //Department Manager
+        CEO = 1, //chief executive officer
+        SVP = 2, //senior vice president
+        RD = 3, //Regional Director
+        DD = 4, //District Director
+        PM = 5, //Plant Manager
+        OM = 6, //Operations Manager
+        SM = 7, //Sales Manager
+        DM = 8 //Department Manager
     }
 }
