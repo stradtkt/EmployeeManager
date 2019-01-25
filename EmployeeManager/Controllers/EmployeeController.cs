@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using EmployeeManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +7,7 @@ namespace EmployeeManager.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly EmployeeManagerContext _context;
+        private EmployeeManagerContext _context;
         public EmployeeController(EmployeeManagerContext context)
         {
             _context = context;
