@@ -13,6 +13,7 @@ namespace EmployeeManager.Models
         public int Age { get; set; }
         public string Title { get; set; }
         public string Department { get; set; }
+        public string Password { get; set; }
         public ManagerRanking ManagerRanking { get; set; }
         public List<ManagersEmployees> Staff { get; set; }
         public decimal Salary { get; set; }

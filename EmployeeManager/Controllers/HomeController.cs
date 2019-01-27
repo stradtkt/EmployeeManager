@@ -92,7 +92,75 @@ namespace EmployeeManager.Controllers
             }
         }
 
+        [HttpGet("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
+        }
 
+
+        [HttpPost("register-manager")]
+        public IActionResult RegisterManager(Manager man)
+        {
+            Manager CheckEmail = _context.Managers
+                .Where(m => m.Email == man.Email)
+                .SingleOrDefault();
+            if (CheckEmail != null)
+            {
+                ViewBag.errors = "That email already exists";
+                return RedirectToAction("Register");
+            }
+            if (ModelState.IsValid)
+            {
+                PasswordHasher<Manager> Hasher = new PasswordHasher<Manager>();
+                Manager newMng = new Manager
+                {
+                    Name = man.Name,
+                    Email = man.Email,
+                    Password = Hasher.HashPassword(man, man.Password),
+                    ManagerRanking = man.ManagerRanking,
+                    Age = man.Age,
+                    Title = man.Title,
+                    Department = man.Department,
+                    Salary = man.Salary
+                };
+                _context.Add(newMng);
+                _context.SaveChanges();
+                ViewBag.success = "Successfully registered";
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                return View("Register");
+            }
+        }
+        [HttpPost("login-manager")]
+        public IActionResult LoginManager(Manager man)
+        {
+            Manager CheckEmail = _context.Managers
+                .SingleOrDefault(e => e.Email == man.Email);
+            if (CheckEmail != null)
+            {
+                var Hasher = new PasswordHasher<Manager>();
+                if (0 != Hasher.VerifyHashedPassword(CheckEmail, CheckEmail.Password, man.Password))
+                {
+                    HttpContext.Session.SetInt32("user_id", CheckEmail.Id);
+                    HttpContext.Session.SetString("first_name", CheckEmail.Name);
+                    return RedirectToAction("Dashboard");
+                }
+                else
+                {
+                    ViewBag.errors = "Incorrect Password";
+                    return View("Register");
+                }
+            }
+            else
+            {
+                ViewBag.errors = "Email not registered";
+                return View("Register");
+            }
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
