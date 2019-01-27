@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿$(function() {
+	var $window = $(window);
+	$('section[data-type="background"]').each(function() {
+		var $bgobj = $(this);
+		$(window).scroll(function() {
+			var yPos = -($window.scrollTop() / $bgobj.data('speed'));
+			var coords = '50% ' + yPos + 'px';
+			$bgobj.css({backgroundPosition: coords});
+		});
+	});
+});

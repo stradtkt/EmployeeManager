@@ -1,0 +1,37 @@
+﻿@model EmployeeManager.Models.LoginManager
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-3 mt-7 mb-7">
+                <div class="card-header">
+                    <h1 class="text-center">Login</h1>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Login" asp-controller="Home" method="post">
+                        <div class="form-group">
+                            <span asp-validation-for="Email"></span>
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" value="" placeholder="Your Email" class="form-control form-control-alternative" />
+                        </div>
+                        <div class="form-group">
+                            <span asp-validation-for="Password"></span>
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" value="" placeholder="Your Password" class="form-control form-control-alternative" />
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <p>Need to <a asp-action="Register" asp-controller="Home" class="btn btn-info">Register</a> instead?</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</div>

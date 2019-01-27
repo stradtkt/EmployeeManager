@@ -31,7 +31,7 @@ namespace EmployeeManager.Models
 
         [Required(ErrorMessage = "Confirm password is required")]
         [DataType(DataType.Password)]
-        [Compare("password")]
+        [Compare("Password")]
         [Display(Name = "Confirm Password")]
         public string Confirm { get; set; }
     }
