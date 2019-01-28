@@ -30,6 +30,16 @@ namespace EmployeeManager.Controllers
         {
             return View();
         }
+        [HttpGet("manager-login")]
+        public IActionResult LoginManager()
+        {
+            return View();
+        }
+        [HttpGet("manager-register")]
+        public IActionResult RegisterManager()
+        {
+            return View();
+        }
         [HttpPost("register-employee")]
         public IActionResult RegisterEmployee(Employee emp)
         {
@@ -101,7 +111,7 @@ namespace EmployeeManager.Controllers
 
 
         [HttpPost("register-manager")]
-        public IActionResult RegisterManager(Manager man)
+        public IActionResult RegisterM(Manager man)
         {
             Manager CheckEmail = _context.Managers
                 .Where(m => m.Email == man.Email)
@@ -136,7 +146,7 @@ namespace EmployeeManager.Controllers
             }
         }
         [HttpPost("login-manager")]
-        public IActionResult LoginManager(Manager man)
+        public IActionResult LoginM(Manager man)
         {
             Manager CheckEmail = _context.Managers
                 .SingleOrDefault(e => e.Email == man.Email);
